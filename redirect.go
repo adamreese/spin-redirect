@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	spinhttp "github.com/fermyon/spin/sdk/go/http"
+	spinhttp "github.com/spinframework/spin-go-sdk/http"
 )
 
 const (
@@ -26,6 +26,7 @@ const (
 )
 
 func init() {
+	// r := &SpinRedirect{}
 	r := NewSpinRedirect()
 	spinhttp.Handle(r.handleFunc)
 }

@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	config "github.com/fermyon/spin/sdk/go/config"
+	config "github.com/spinframework/spin-go-sdk/variables"
 )
 
 type ConfigReader interface {
@@ -22,8 +22,8 @@ to find the value in the environment variables.
 type DefaultConfigReader struct{}
 
 // NewDefaultConfigReader returns a new DefaultConfigReader
-func NewDefaultConfigReader() DefaultConfigReader {
-	return DefaultConfigReader{}
+func NewDefaultConfigReader() *DefaultConfigReader {
+	return &DefaultConfigReader{}
 }
 
 /*
@@ -42,7 +42,8 @@ Usage:
 	cfg := NewDefaultConfigReader()
 	value := cfg.Get("destination")
 */
-func (c DefaultConfigReader) Get(key string) string {
+func (c *DefaultConfigReader) Get(key string) string {
+	// panic("FREAK OUT")
 	v, err := config.Get(key)
 	if err != nil {
 		return os.Getenv(strings.ToUpper(key))
