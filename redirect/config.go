@@ -1,4 +1,4 @@
-package main
+package redirect
 
 import (
 	"os"
@@ -22,8 +22,8 @@ to find the value in the environment variables.
 type DefaultConfigReader struct{}
 
 // NewDefaultConfigReader returns a new DefaultConfigReader
-func NewDefaultConfigReader() *DefaultConfigReader {
-	return &DefaultConfigReader{}
+func NewDefaultConfigReader() DefaultConfigReader {
+	return DefaultConfigReader{}
 }
 
 /*
@@ -42,8 +42,7 @@ Usage:
 	cfg := NewDefaultConfigReader()
 	value := cfg.Get("destination")
 */
-func (c *DefaultConfigReader) Get(key string) string {
-	// panic("FREAK OUT")
+func (c DefaultConfigReader) Get(key string) string {
 	v, err := config.Get(key)
 	if err != nil {
 		return os.Getenv(strings.ToUpper(key))
